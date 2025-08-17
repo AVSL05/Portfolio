@@ -26,7 +26,7 @@ const Header = () => {
       <div className="container">
         <div className="header-content">
           <a href="#hero" className="logo">
-            Tu Nombre
+            Angel Vicente Santana Loera
           </a>
           
           <nav className={`nav ${isMobileMenuOpen ? 'nav-open' : ''}`}>

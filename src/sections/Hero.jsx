@@ -7,14 +7,15 @@ const Hero = () => {
       <div className="container">
         <div className="hero-content fade-in">
           <h1 className="hero-title">
-            Hola, soy <span className="gradient-text">Tu Nombre</span>
+            Hola, soy <span className="gradient-text">Vicente</span>
           </h1>
           <p className="hero-subtitle">
-            Desarrollador de Software Full Stack
+            Desarrollador de Software
           </p>
           <p className="hero-description">
             Creo experiencias digitales excepcionales utilizando tecnologías modernas.
-            Me especializo en desarrollo web con React, Node.js y más.
+            Y me gusta experimentar con nuevas herramientas y frameworks.
+            Me especializo en todo tipo de herramientas modernas para el desarrollo web y la creación de experiencias interactivas.
           </p>
           <div className="hero-actions">
             <a href="#projects" className="btn btn-primary">
