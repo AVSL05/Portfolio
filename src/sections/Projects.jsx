@@ -5,43 +5,43 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: 'E-commerce Platform',
-      description: 'Plataforma de comercio electrónico completa con carrito de compras, procesamiento de pagos y panel de administración.',
+      title: 'Sistema de Gestión Comercial',
+      description: 'Sistema completo de gestión para tienda minorista especializada en ropa, calzado y accesorios. Incluye control de inventario, ventas, clientes y reportes en tiempo real.',
       image: '/api/placeholder/400/250',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+      technologies: ['Python', 'MongoDB', 'FastAPI', 'PyQt/Tkinter'],
       liveUrl: '#',
-      githubUrl: '#',
+      githubUrl: 'https://github.com/AVSL05/Gestion-tienda',
       featured: true
     },
     {
       id: 2,
-      title: 'Task Management App',
-      description: 'Aplicación de gestión de tareas colaborativa con funcionalidades de tiempo real y notificaciones.',
+      title: 'App de Notas Móvil',
+      description: 'Aplicación móvil intuitiva para gestión de notas con interfaz moderna y funcionalidades avanzadas. Diseñada para dispositivos móviles con excelente UX.',
       image: '/api/placeholder/400/250',
-      technologies: ['Vue.js', 'Express.js', 'Socket.io', 'PostgreSQL'],
+      technologies: ['Dart', 'Flutter', 'Python', 'SQLite'],
       liveUrl: '#',
-      githubUrl: '#',
-      featured: false
+      githubUrl: 'https://github.com/AVSL05/Notas-App',
+      featured: true
     },
     {
       id: 3,
-      title: 'Weather Dashboard',
-      description: 'Dashboard meteorológico con visualización de datos en tiempo real y pronósticos detallados.',
+      title: 'Portfolio Personal',
+      description: 'Portfolio personal desarrollado con React y Vite, con diseño minimalista y moderno. Incluye animaciones suaves y diseño completamente responsive.',
       image: '/api/placeholder/400/250',
-      technologies: ['React', 'Chart.js', 'Weather API', 'CSS3'],
-      liveUrl: '#',
-      githubUrl: '#',
+      technologies: ['React', 'Vite', 'CSS3', 'JavaScript'],
+      liveUrl: 'https://avsl05.github.io/Portfolio/',
+      githubUrl: 'https://github.com/AVSL05/Portfolio',
       featured: false
     },
     {
       id: 4,
-      title: 'Social Media Analytics',
-      description: 'Herramienta de análisis de redes sociales con métricas avanzadas y reportes automatizados.',
+      title: 'Proyecto en Desarrollo',
+      description: 'Próximo proyecto en desarrollo utilizando tecnologías modernas. Mantente atento para más actualizaciones.',
       image: '/api/placeholder/400/250',
-      technologies: ['Python', 'Django', 'React', 'D3.js'],
+      technologies: ['React', 'Node.js', 'MongoDB', 'TypeScript'],
       liveUrl: '#',
       githubUrl: '#',
-      featured: true
+      featured: false
     }
   ]
 
@@ -53,7 +53,7 @@ const Projects = () => {
       <div className="container">
         <h2 className="section-title">Mis proyectos</h2>
         <p className="section-subtitle">
-          Una selección de mis trabajos más destacados
+          Aplicaciones desarrolladas con tecnologías modernas y enfoque en la experiencia del usuario
         </p>
         
         {/* Proyectos destacados */}

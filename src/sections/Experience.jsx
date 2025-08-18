@@ -2,56 +2,64 @@ import React from 'react'
 import './Experience.css'
 
 const Experience = () => {
-  const experiences = [
+  const certifications = [
     {
       id: 1,
-      company: 'Empresa Actual',
-      position: 'Senior Full Stack Developer',
-      period: '2022 - Presente',
-      description: 'Desarrollo y mantenimiento de aplicaciones web escalables utilizando React, Node.js y MongoDB. Liderazgo técnico de un equipo de 5 desarrolladores.',
-      technologies: ['React', 'Node.js', 'MongoDB', 'TypeScript', 'AWS']
+      category: 'Cloud Computing & AWS',
+      institution: 'AWS Academy',
+      period: '2024',
+      description: 'Especialización en tecnologías cloud con certificaciones en fundamentos y operaciones de AWS. Conocimientos en infraestructura cloud y mejores prácticas.',
+      technologies: ['AWS Cloud Foundations', 'AWS Cloud Operations', 'Cloud Infrastructure', 'Cloud Security']
     },
     {
       id: 2,
-      company: 'Empresa Anterior',
-      position: 'Frontend Developer',
-      period: '2020 - 2022',
-      description: 'Creación de interfaces de usuario responsive y accesibles. Implementación de mejores prácticas de desarrollo frontend y optimización de rendimiento.',
-      technologies: ['React', 'JavaScript', 'CSS3', 'Webpack', 'Jest']
+      category: 'Desarrollo de Software',
+      institution: 'Oracle Academy & Cisco',
+      period: '2024',
+      description: 'Base sólida en programación con Python, Java y estructuras de datos. Certificaciones fundamentales para desarrollo de aplicaciones robustas.',
+      technologies: ['Python Essentials', 'Java Fundamentals', 'Data Structures', 'Database Foundations']
     },
     {
       id: 3,
-      company: 'Startup Tech',
-      position: 'Junior Developer',
-      period: '2019 - 2020',
-      description: 'Desarrollo de aplicaciones web desde cero. Colaboración estrecha con el equipo de diseño para implementar interfaces de usuario intuitivas.',
-      technologies: ['HTML5', 'CSS3', 'JavaScript', 'Vue.js', 'Express.js']
+      category: 'Ciberseguridad & Redes',
+      institution: 'LinkedIn Learning & Cisco',
+      period: '2024',
+      description: 'Conocimientos en seguridad de sistemas operativos y fundamentos de redes. Base esencial para desarrollo seguro y arquitectura de aplicaciones.',
+      technologies: ['IT Security Foundations', 'Operating System Security', 'Networking Basics', 'Security Best Practices']
+    },
+    {
+      id: 4,
+      category: 'Data Science & Web Development',
+      institution: 'IBM SkillsBuild & ArkusNexus',
+      period: '2024',
+      description: 'Formación especializada en ciencia de datos y desarrollo web moderno. Bootcamp intensivo y certificaciones en tecnologías web fundamentales.',
+      technologies: ['Data Science Introduction', 'Web Development Fundamentals', 'Bootcamp Experience', 'Modern Web Technologies']
     }
   ]
 
   return (
     <section id="experience" className="experience section">
       <div className="container">
-        <h2 className="section-title">Experiencia profesional</h2>
+        <h2 className="section-title">Certificaciones y Formación</h2>
         <p className="section-subtitle">
-          Mi trayectoria en el desarrollo de software
+          Mi formación continua en tecnologías emergentes y desarrollo de software
         </p>
         
         <div className="timeline">
-          {experiences.map((exp) => (
-            <div key={exp.id} className="timeline-item">
+          {certifications.map((cert) => (
+            <div key={cert.id} className="timeline-item">
               <div className="timeline-marker">
                 <div className="timeline-dot"></div>
               </div>
               <div className="timeline-content card">
                 <div className="experience-header">
-                  <h3 className="position">{exp.position}</h3>
-                  <span className="period">{exp.period}</span>
+                  <h3 className="position">{cert.category}</h3>
+                  <span className="period">{cert.period}</span>
                 </div>
-                <h4 className="company">{exp.company}</h4>
-                <p className="description">{exp.description}</p>
+                <h4 className="company">{cert.institution}</h4>
+                <p className="description">{cert.description}</p>
                 <div className="technologies">
-                  {exp.technologies.map((tech) => (
+                  {cert.technologies.map((tech) => (
                     <span key={tech} className="tech-tag">
                       {tech}
                     </span>

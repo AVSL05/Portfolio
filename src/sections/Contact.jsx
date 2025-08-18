@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import emailjs from '@emailjs/browser'
 import './Contact.css'
 
 const Contact = () => {
@@ -21,36 +22,55 @@ const Contact = () => {
     e.preventDefault()
     setIsSubmitting(true)
     
-    // Simular envío del formulario
-    setTimeout(() => {
+    try {
+      // Configuración de EmailJS con tus claves reales
+      const serviceID = 'service_qws1koa'
+      const templateID = 'template_ffryt7t'  
+      const publicKey = 'n0F4RndK3jLrgDeq5'
+      
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        to_email: 'angelvicentesl05@gmail.com',
+        message: formData.message,
+        reply_to: formData.email
+      }
+      
+      console.log('Enviando email con EmailJS...', templateParams)
+      
+      // Envío real con EmailJS
+      await emailjs.send(serviceID, templateID, templateParams, publicKey)
+      
       setIsSubmitting(false)
-      setSubmitMessage('¡Mensaje enviado correctamente! Te responderé pronto.')
+      setSubmitMessage(`¡Mensaje enviado correctamente! Te responderé pronto a ${formData.email}`)
       setFormData({ name: '', email: '', message: '' })
       
       setTimeout(() => {
         setSubmitMessage('')
       }, 5000)
-    }, 1000)
+      
+    } catch (error) {
+      setIsSubmitting(false)
+      setSubmitMessage('Error al enviar el mensaje. Por favor, contáctame directamente a angelvicentesl05@gmail.com')
+      console.error('Error enviando email:', error)
+    }
   }
 
   const contactInfo = [
     {
-      icon: '📧',
       label: 'Email',
-      value: 'tu.email@ejemplo.com',
-      link: 'mailto:tu.email@ejemplo.com'
+      value: 'angelvicentesl05@gmail.com',
+      link: 'mailto:angelvicentesl05@gmail.com'
     },
     {
-      icon: '📱',
       label: 'LinkedIn',
-      value: '/in/tu-perfil',
-      link: 'https://linkedin.com/in/tu-perfil'
+      value: '/in/angel-santana-58a5012b3',
+      link: 'https://www.linkedin.com/in/angel-santana-58a5012b3'
     },
     {
-      icon: '🐙',
       label: 'GitHub',
-      value: '/tu-usuario',
-      link: 'https://github.com/tu-usuario'
+      value: '/AVSL05',
+      link: 'https://github.com/AVSL05'
     }
   ]
 
@@ -79,7 +99,6 @@ const Contact = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span className="contact-icon">{contact.icon}</span>
                   <div className="contact-details">
                     <span className="contact-label">{contact.label}</span>
                     <span className="contact-value">{contact.value}</span>
