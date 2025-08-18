@@ -38,7 +38,7 @@ const Hero = () => {
                 <span className="keyword">const</span> <span className="variable">developer</span> = {'{'}
               </div>
               <div className="code-line indent">
-                <span className="property">name</span>: <span className="string">'Tu Nombre'</span>,
+                <span className="property">name</span>: <span className="string">'Vicente'</span>,
               </div>
               <div className="code-line indent">
                 <span className="property">skills</span>: [<span className="string">'React'</span>, <span className="string">'Node.js'</span>],

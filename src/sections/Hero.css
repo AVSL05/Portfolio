@@ -163,6 +163,10 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .hero {
+    padding-top: 80px;
+  }
+  
   .hero .container {
     grid-template-columns: 1fr;
     gap: var(--spacing-2xl);
