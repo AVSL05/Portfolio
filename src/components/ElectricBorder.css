@@ -135,3 +135,38 @@
     opacity: 0.15;
   }
 }
+
+/* Responsive para ElectricBorder */
+@media (max-width: 768px) {
+  .tech-electric-border {
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+  }
+  
+  .tech-electric-border .eb-content {
+    padding: var(--spacing-lg);
+  }
+  
+  .eb-glow-1,
+  .eb-glow-2,
+  .eb-background-glow {
+    opacity: 0.4; /* Reducir intensidad en móviles */
+  }
+}
+
+@media (max-width: 480px) {
+  .tech-electric-border {
+    padding: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+  }
+  
+  .tech-electric-border .eb-content {
+    padding: var(--spacing-md);
+  }
+  
+  .eb-glow-1,
+  .eb-glow-2,
+  .eb-background-glow {
+    opacity: 0.3; /* Aún menos intensidad en pantallas pequeñas */
+  }
+}

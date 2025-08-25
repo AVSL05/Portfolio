@@ -229,10 +229,29 @@
   .about-content {
     grid-template-columns: 1fr;
     gap: var(--spacing-2xl);
+    max-width: 100%;
+    margin: 0;
+  }
+  
+  .about-text {
+    max-width: 100%;
+    margin-left: 0;
+    padding-right: 0;
+    text-align: center;
+    order: 1;
+  }
+  
+  .technologies {
+    margin-left: 0;
+    margin-right: 0;
+    order: 2;
   }
   
   .about-text p {
     font-size: 1rem;
+    text-align: left;
+    max-width: 90%;
+    margin: 0 auto var(--spacing-lg) auto;
   }
   
   .main-technologies {
@@ -247,17 +266,28 @@
   .main-grid {
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: var(--spacing-lg);
-    max-width: 600px;
+    max-width: 100%;
+    padding: 0 var(--spacing-md);
   }
   
   .tech-item.main-tech {
     padding: var(--spacing-lg);
+    min-height: 120px;
   }
   
   .tech-image {
     width: 60px;
     height: 60px;
     margin-bottom: var(--spacing-md);
+  }
+  
+  .tech-electric-border {
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+  }
+  
+  .tech-electric-border .eb-content {
+    padding: var(--spacing-lg);
   }
   
   .tools-grid {
@@ -279,10 +309,19 @@
 }
 
 @media (max-width: 480px) {
+  .about-content {
+    gap: var(--spacing-xl);
+  }
+  
+  .about-text p {
+    font-size: 0.95rem;
+    max-width: 95%;
+  }
+  
   .main-grid {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--spacing-md);
-    max-width: 400px;
+    padding: 0 var(--spacing-sm);
   }
   
   .tech-item.main-tech {
@@ -297,5 +336,18 @@
   
   .tech-name {
     font-size: 0.875rem;
+  }
+  
+  .tech-category {
+    font-size: 0.7rem;
+  }
+  
+  .tech-electric-border {
+    padding: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+  }
+  
+  .tech-electric-border .eb-content {
+    padding: var(--spacing-md);
   }
 }

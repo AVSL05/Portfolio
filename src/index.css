@@ -100,9 +100,21 @@ body {
 @media (max-width: 768px) {
   .container {
     padding: 0 var(--spacing-md);
+    max-width: 100%;
+    margin: 0 auto;
   }
   
   .section {
     padding: var(--spacing-2xl) 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .section {
+    padding: var(--spacing-xl) 0;
   }
 }
