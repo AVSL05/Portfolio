@@ -1,0 +1,27 @@
+.decrypted-text {
+  font-family: inherit;
+  color: inherit;
+  display: inline-block;
+  position: relative;
+}
+
+.decrypted-text.decrypting {
+  text-shadow: 0 0 3px currentColor;
+}
+
+.decrypted-text.decrypting::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.05);
+  animation: flicker 0.15s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}

@@ -2,6 +2,8 @@ import React from 'react'
 import './Hero.css'
 import SplitText from '../components/SplitText'
 import ShinyText from '../components/ShinyText'
+import ShinyButton from '../components/ShinyButton'
+import DecryptedText from '../components/DecryptedText'
 
 const Hero = () => {
   return (
@@ -21,12 +23,20 @@ const Hero = () => {
             Me especializo en todo tipo de herramientas modernas para el desarrollo web y la creación de experiencias interactivas.
           </p>
           <div className="hero-actions">
-            <a href="#projects" className="btn btn-primary">
+            <ShinyButton 
+              className="btn btn-primary"
+              onClick={() => document.getElementById('projects').scrollIntoView({behavior: 'smooth'})}
+              delay={1000}
+            >
               Ver mis proyectos
-            </a>
-            <a href="#contact" className="btn">
+            </ShinyButton>
+            <ShinyButton 
+              className="btn"
+              onClick={() => document.getElementById('contact').scrollIntoView({behavior: 'smooth'})}
+              delay={1500}
+            >
               Contactarme
-            </a>
+            </ShinyButton>
           </div>
         </div>
         <div className="hero-visual fade-in">
@@ -41,13 +51,13 @@ const Hero = () => {
                 <span className="keyword">const</span> <span className="variable">developer</span> = {'{'}
               </div>
               <div className="code-line indent">
-                <span className="property">name</span>: <span className="string">'Vicente'</span>,
+                <span className="property">name</span>: <span className="string">'<DecryptedText text="Vicente" delay={2000} speed={80} />'</span>,
               </div>
               <div className="code-line indent">
-                <span className="property">skills</span>: [<span className="string">'React'</span>, <span className="string">'Node.js'</span>],
+                <span className="property">skills</span>: [<span className="string">'<DecryptedText text="React" delay={3000} speed={60} />'</span>, <span className="string">'<DecryptedText text="Node.js" delay={3500} speed={60} />'</span>],
               </div>
               <div className="code-line indent">
-                <span className="property">passion</span>: <span className="string">'Crear código limpio'</span>
+                <span className="property">passion</span>: <span className="string">'<DecryptedText text="Crear código limpio" delay={4000} speed={70} />'</span>
               </div>
               <div className="code-line">{'}'}</div>
             </div>
