@@ -1,5 +1,6 @@
 import React from 'react'
 import './Projects.css'
+import SplitText from '../components/SplitText'
 
 const Projects = () => {
   const projects = [
@@ -51,7 +52,9 @@ const Projects = () => {
   return (
     <section id="projects" className="projects section">
       <div className="container">
-        <h2 className="section-title">Mis proyectos</h2>
+        <h2 className="section-title">
+          <SplitText delay={0.2}>Mis proyectos</SplitText>
+        </h2>
         <p className="section-subtitle">
           Aplicaciones desarrolladas con tecnologías modernas y enfoque en la experiencia del usuario
         </p>

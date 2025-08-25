@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import emailjs from '@emailjs/browser'
 import './Contact.css'
+import SplitText from '../components/SplitText'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -77,7 +78,9 @@ const Contact = () => {
   return (
     <section id="contact" className="contact section">
       <div className="container">
-        <h2 className="section-title">Contacto</h2>
+        <h2 className="section-title">
+          <SplitText delay={0.2}>Contacto</SplitText>
+        </h2>
         <p className="section-subtitle">
           ¿Tienes un proyecto en mente? ¡Hablemos!
         </p>

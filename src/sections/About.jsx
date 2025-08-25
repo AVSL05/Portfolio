@@ -1,5 +1,6 @@
 import React from 'react'
 import './About.css'
+import SplitText from '../components/SplitText'
 
 // Importar imágenes de tecnologías
 import javascriptIcon from '../assets/tech/javascript.svg'
@@ -89,9 +90,11 @@ const About = () => {
   return (
     <section id="about" className="about section">
       <div className="container">
-        <h2 className="section-title">Sobre mí</h2>
+        <h2 className="section-title">
+          <SplitText delay={0.2}>Sobre mí</SplitText>
+        </h2>
         <p className="section-subtitle">
-          Desarrollador Full Stack especializado en JavaScript, Python y desarrollo móvil
+          <SplitText delay={0.3}>Desarrollador Full Stack especializado en JavaScript, Python y desarrollo móvil</SplitText>
         </p>
         
         <div className="about-content">

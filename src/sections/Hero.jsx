@@ -1,5 +1,6 @@
 import React from 'react'
 import './Hero.css'
+import SplitText from '../components/SplitText'
 
 const Hero = () => {
   return (
@@ -7,7 +8,8 @@ const Hero = () => {
       <div className="container">
         <div className="hero-content fade-in">
           <h1 className="hero-title">
-            Hola, soy <span className="gradient-text">Vicente</span>
+            <SplitText delay={0.5}>Hola, soy </SplitText>
+            <SplitText delay={0.8} className="gradient-text">Vicente</SplitText>
           </h1>
           <p className="hero-subtitle">
             Desarrollador de Software

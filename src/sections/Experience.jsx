@@ -1,5 +1,6 @@
 import React from 'react'
 import './Experience.css'
+import SplitText from '../components/SplitText'
 
 const Experience = () => {
   const certifications = [
@@ -40,9 +41,11 @@ const Experience = () => {
   return (
     <section id="experience" className="experience section">
       <div className="container">
-        <h2 className="section-title">Certificaciones y Formación</h2>
+        <h2 className="section-title">
+          <SplitText delay={0.2}>Certificaciones y Formación</SplitText>
+        </h2>
         <p className="section-subtitle">
-          Mi formación continua en tecnologías emergentes y desarrollo de software
+          <SplitText delay={0.4}>Mi formación continua en tecnologías emergentes y desarrollo de software</SplitText>
         </p>
         
         <div className="timeline">
