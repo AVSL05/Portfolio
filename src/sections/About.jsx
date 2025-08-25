@@ -1,6 +1,7 @@
 import React from 'react'
 import './About.css'
 import SplitText from '../components/SplitText'
+import ElectricBorder from '../components/ElectricBorder'
 
 // Importar imágenes de tecnologías
 import javascriptIcon from '../assets/tech/javascript.svg'
@@ -117,34 +118,42 @@ const About = () => {
           </div>
           
           <div className="technologies">
-            <div className="main-technologies">
-              <h3>Stack de Tecnologías</h3>
-              <div className="tech-grid main-grid">
-                {mainTechnologies.map((tech) => (
-                  <div key={tech.name} className="tech-item main-tech">
-                    <div className="tech-image">
-                      <img 
-                        src={tech.image} 
-                        alt={tech.name}
-                        onLoad={() => console.log(`✅ Imagen cargada: ${tech.name}`)}
-                        onError={(e) => {
-                          console.error(`❌ Error cargando imagen: ${tech.name}`, e.target.src);
-                          e.target.style.display = 'none';
-                          e.target.nextSibling.style.display = 'flex';
-                        }}
-                      />
-                      <div className="tech-placeholder" style={{display: 'none'}}>
-                        {tech.name.charAt(0)}
+            <ElectricBorder 
+              color="#8b5cf6" 
+              speed={0.8} 
+              chaos={1.2} 
+              thickness={2}
+              className="tech-electric-border"
+            >
+              <div className="main-technologies">
+                <h3>Stack de Tecnologías</h3>
+                <div className="tech-grid main-grid">
+                  {mainTechnologies.map((tech) => (
+                    <div key={tech.name} className="tech-item main-tech">
+                      <div className="tech-image">
+                        <img 
+                          src={tech.image} 
+                          alt={tech.name}
+                          onLoad={() => console.log(`✅ Imagen cargada: ${tech.name}`)}
+                          onError={(e) => {
+                            console.error(`❌ Error cargando imagen: ${tech.name}`, e.target.src);
+                            e.target.style.display = 'none';
+                            e.target.nextSibling.style.display = 'flex';
+                          }}
+                        />
+                        <div className="tech-placeholder" style={{display: 'none'}}>
+                          {tech.name.charAt(0)}
+                        </div>
+                      </div>
+                      <div className="tech-info">
+                        <span className="tech-name">{tech.name}</span>
+                        <span className="tech-category">{tech.category}</span>
                       </div>
                     </div>
-                    <div className="tech-info">
-                      <span className="tech-name">{tech.name}</span>
-                      <span className="tech-category">{tech.category}</span>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            </ElectricBorder>
           </div>
         </div>
       </div>
