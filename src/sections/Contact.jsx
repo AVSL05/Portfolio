@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import emailjs from '@emailjs/browser'
 import './Contact.css'
 import SplitText from '../components/SplitText'
+import ShinyText from '../components/ShinyText'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -87,10 +88,11 @@ const Contact = () => {
         
         <div className="contact-content">
           <div className="contact-info">
-            <h3>Conectemos</h3>
+            <h3>
+              <ShinyText>Conectemos</ShinyText>
+            </h3>
             <p>
-              Estoy siempre abierto a discutir nuevas oportunidades, 
-              proyectos interesantes o simplemente tener una conversación sobre tecnología.
+              <ShinyText>Estoy siempre abierto a discutir nuevas oportunidades, proyectos interesantes o simplemente tener una conversación sobre tecnología.</ShinyText>
             </p>
             
             <div className="contact-methods">

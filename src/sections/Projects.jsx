@@ -1,6 +1,7 @@
 import React from 'react'
 import './Projects.css'
 import SplitText from '../components/SplitText'
+import ShinyText from '../components/ShinyText'
 
 const Projects = () => {
   const projects = [
@@ -56,12 +57,14 @@ const Projects = () => {
           <SplitText delay={0.2}>Mis proyectos</SplitText>
         </h2>
         <p className="section-subtitle">
-          Aplicaciones desarrolladas con tecnologías modernas y enfoque en la experiencia del usuario
+          <ShinyText>Aplicaciones desarrolladas con tecnologías modernas y enfoque en la experiencia del usuario</ShinyText>
         </p>
         
         {/* Proyectos destacados */}
         <div className="featured-projects">
-          <h3 className="subsection-title">Proyectos destacados</h3>
+          <h3 className="subsection-title">
+            <ShinyText>Proyectos destacados</ShinyText>
+          </h3>
           <div className="projects-grid featured">
             {featuredProjects.map((project) => (
               <div key={project.id} className="project-card featured-card">

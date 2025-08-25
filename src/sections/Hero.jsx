@@ -1,6 +1,7 @@
 import React from 'react'
 import './Hero.css'
 import SplitText from '../components/SplitText'
+import ShinyText from '../components/ShinyText'
 
 const Hero = () => {
   return (
@@ -12,7 +13,7 @@ const Hero = () => {
             <SplitText delay={0.8} className="gradient-text">Vicente</SplitText>
           </h1>
           <p className="hero-subtitle">
-            Desarrollador de Software
+            <ShinyText>Desarrollador de Software</ShinyText>
           </p>
           <p className="hero-description">
             Creo experiencias digitales excepcionales utilizando tecnologías modernas.
