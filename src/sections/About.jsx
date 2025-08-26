@@ -1,8 +1,6 @@
 import React from 'react'
 import './About.css'
 import SplitText from '../components/SplitText'
-import ElectricBorder from '../components/ElectricBorder'
-
 // Importar imágenes de tecnologías
 import javascriptIcon from '../assets/tech/javascript.svg'
 import typescriptIcon from '../assets/tech/typescript.svg'
@@ -101,30 +99,14 @@ const About = () => {
         <div className="about-content">
           <div className="about-text">
             <p>
-              Soy un desarrollador de software apasionado por crear aplicaciones web y móviles 
-              modernas. Mi stack principal incluye JavaScript/TypeScript para desarrollo web, 
-              Python para backend y scripting, y Dart/Flutter para aplicaciones móviles.
-            </p>
-            <p>
-              Me especializo en React para frontend, Node.js para backend, y MongoDB como 
-              base de datos principal. También tengo experiencia en desarrollo móvil con 
-              Android Studio y Flutter, lo que me permite crear soluciones completas.
-            </p>
-            <p>
-              Mi enfoque está en escribir código limpio, escalable y eficiente. Disfruto 
-              aprendiendo nuevas tecnologías y manteniéndome al día con las mejores 
-              prácticas del desarrollo moderno.
+              Soy un desarrollador de software apasionado por crear aplicaciones web y móviles modernas. 
+              Me especializo en JavaScript, TypeScript, Python, Dart y Kotlin.
+              Mi stack principal incluye React para frontend, Node.js para backend y MongoDB como base de datos.
+              Tengo experiencia en desarrollo móvil con Android Studio y Flutter.
             </p>
           </div>
           
           <div className="technologies">
-            <ElectricBorder 
-              color="#8b5cf6" 
-              speed={0.8} 
-              chaos={1.2} 
-              thickness={2}
-              className="tech-electric-border"
-            >
               <div className="main-technologies">
                 <h3>Stack de Tecnologías</h3>
                 <div className="tech-grid main-grid">
@@ -153,7 +135,6 @@ const About = () => {
                   ))}
                 </div>
               </div>
-            </ElectricBorder>
           </div>
         </div>
       </div>

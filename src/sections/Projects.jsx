@@ -101,7 +101,7 @@ const Projects = () => {
 
         {/* Otros proyectos */}
         <div className="other-projects">
-          <h3 className="subsection-title">Otros proyectos</h3>
+          <h3 className="subsection-title">Proyectos en Desarrollo</h3>
           <div className="projects-grid">
             {otherProjects.map((project) => (
               <div key={project.id} className="project-card">
