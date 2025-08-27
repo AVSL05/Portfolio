@@ -1,3 +1,19 @@
+/* === Alineación consistente con el hero ===
+   Reusa estas variables en el hero para que queden 1:1 */
+:root {
+  --container-max: 1100px;   /* ajústalo al que use tu hero */
+  --container-pad: 24px;     /* mismo padding lateral que el hero */
+}
+
+/* Contenedor del header (debe ser el MISMO que el hero) */
+.site-container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+/* ====== Estilos existentes (puedes dejar los tuyos) ====== */
+
 .header {
   position: fixed;
   top: 0;
@@ -19,7 +35,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--spacing-md) 0;
+  padding: var(--spacing-md) 0; /* solo vertical para no romper la alineación */
 }
 
 .logo {
@@ -47,9 +63,7 @@
   position: relative;
 }
 
-.nav-link:hover {
-  color: var(--accent);
-}
+.nav-link:hover { color: var(--accent); }
 
 .nav-link::after {
   content: '';
@@ -62,9 +76,7 @@
   transition: width 0.2s ease;
 }
 
-.nav-link:hover::after {
-  width: 100%;
-}
+.nav-link:hover::after { width: 100%; }
 
 .mobile-menu-toggle {
   display: none;
@@ -85,26 +97,19 @@
 
 /* Modo oscuro */
 @media (prefers-color-scheme: dark) {
-  .header {
-    background: rgba(15, 23, 42, 0.9);
-  }
-  
-  .header.scrolled {
-    background: rgba(15, 23, 42, 0.95);
-  }
+  .header { background: rgba(15, 23, 42, 0.9); }
+  .header.scrolled { background: rgba(15, 23, 42, 0.95); }
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .header-content {
-    padding: var(--spacing-sm) 0;
-  }
-  
+  .header-content { padding: var(--spacing-sm) 0; }
+
   .logo {
     font-size: 1rem;
     font-weight: 600;
   }
-  
+
   .nav {
     position: fixed;
     top: 100%;
@@ -119,50 +124,28 @@
     visibility: hidden;
     transition: all 0.3s ease;
   }
-  
+
   .nav-open {
     transform: translateY(0);
     opacity: 1;
     visibility: visible;
   }
-  
-  .nav-link {
-    padding: var(--spacing-sm) 0;
-  }
-  
-  .mobile-menu-toggle {
-    display: flex;
-  }
-  
+
+  .nav-link { padding: var(--spacing-sm) 0; }
+  .mobile-menu-toggle { display: flex; }
+
   .nav-open + .mobile-menu-toggle span:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
   }
-  
-  .nav-open + .mobile-menu-toggle span:nth-child(2) {
-    opacity: 0;
-  }
-  
+  .nav-open + .mobile-menu-toggle span:nth-child(2) { opacity: 0; }
   .nav-open + .mobile-menu-toggle span:nth-child(3) {
     transform: rotate(-45deg) translate(7px, -6px);
   }
 }
 
 @media (max-width: 480px) {
-  .header-content {
-    padding: var(--spacing-xs) 0;
-  }
-  
-  .logo {
-    font-size: 0.875rem;
-    font-weight: 600;
-  }
-  
-  .mobile-menu-toggle {
-    padding: var(--spacing-xs);
-  }
-  
-  .mobile-menu-toggle span {
-    width: 20px;
-    height: 2px;
-  }
+  .header-content { padding: var(--spacing-xs) 0; }
+  .logo { font-size: 0.875rem; font-weight: 600; }
+  .mobile-menu-toggle { padding: var(--spacing-xs); }
+  .mobile-menu-toggle span { width: 20px; height: 2px; }
 }

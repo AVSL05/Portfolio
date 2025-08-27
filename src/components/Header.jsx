@@ -23,12 +23,13 @@ const Header = () => {
 
   return (
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
-      <div className="container">
+      {/* Usa el mismo contenedor que el hero */}
+      <div className="site-container">
         <div className="header-content">
           <a href="#hero" className="logo">
             Angel Vicente Santana Loera
           </a>
-          
+
           <nav className={`nav ${isMobileMenuOpen ? 'nav-open' : ''}`}>
             {navItems.map((item) => (
               <a

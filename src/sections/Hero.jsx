@@ -8,7 +8,8 @@ import DecryptedText from '../components/DecryptedText'
 const Hero = () => {
   return (
     <section id="hero" className="hero section">
-      <div className="container">
+      {/* IMPORTANTE: mismo contenedor que el header */}
+      <div className="site-container">
         <div className="hero-content fade-in">
           <h1 className="hero-title">
             <SplitText delay={0.5}>Hola, soy </SplitText>
@@ -39,6 +40,7 @@ const Hero = () => {
             </ShinyButton>
           </div>
         </div>
+
         <div className="hero-visual fade-in">
           <div className="code-snippet">
             <div className="code-header">
