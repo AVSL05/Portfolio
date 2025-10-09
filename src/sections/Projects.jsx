@@ -7,6 +7,8 @@ const Projects = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAutoPlay, setIsAutoPlay] = useState(true)
   const [expandedCard, setExpandedCard] = useState(null)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+  const [imageIndex, setImageIndex] = useState({}) // Para manejar el índice de imagen de cada proyecto
   const [touchStart, setTouchStart] = useState(null)
   const [touchEnd, setTouchEnd] = useState(null)
 
@@ -18,7 +20,10 @@ const Projects = () => {
       id: 1,
       title: 'Sistema de Gestión Comercial',
       description: 'Sistema completo de gestión para tienda minorista especializada en ropa, calzado y accesorios. Incluye control de inventario, ventas, clientes y reportes en tiempo real.',
-      image: '/api/placeholder/400/250',
+      images: [
+        '/images/projects/Gestion de tiendas.png',
+        '/images/projects/Gestion de tiendas_3.png'
+      ],
       technologies: ['Python', 'MongoDB', 'FastAPI', 'PyQt/Tkinter'],
       liveUrl: '#',
       githubUrl: 'https://github.com/AVSL05/Gestion-tienda',
@@ -28,7 +33,7 @@ const Projects = () => {
       id: 2,
       title: 'App de Notas Móvil',
       description: 'Aplicación móvil intuitiva para gestión de notas con interfaz moderna y funcionalidades avanzadas. Diseñada para dispositivos móviles con excelente UX.',
-      image: '/api/placeholder/400/250',
+      images: ['/images/projects/notas-app.png'], // Puedes agregar más imágenes aquí
       technologies: ['Dart', 'Flutter', 'Python', 'SQLite'],
       liveUrl: '#',
       githubUrl: 'https://github.com/AVSL05/Notas-App',
@@ -38,7 +43,7 @@ const Projects = () => {
       id: 3,
       title: 'Portfolio Personal',
       description: 'Portfolio personal desarrollado con React y Vite, con diseño minimalista y moderno. Incluye animaciones suaves y diseño completamente responsive.',
-      image: '/api/placeholder/400/250',
+      images: ['/images/projects/portfolio.png'], // Puedes agregar más imágenes aquí
       technologies: ['React', 'Vite', 'CSS3', 'JavaScript'],
       liveUrl: 'https://avsl05.github.io/Portfolio/',
       githubUrl: 'https://github.com/AVSL05/Portfolio',
@@ -47,8 +52,8 @@ const Projects = () => {
     {
       id: 4,
       title: 'Proyecto en Desarrollo',
-      description: 'Próximo proyecto en desarrollo utilizando tecnologías modernas. Mantente atento para más actualizaciones.',
-      image: '/api/placeholder/400/250',
+      description: 'Próximo proyecto innovador en desarrollo utilizando tecnologías modernas como React, Node.js y TypeScript. Este proyecto promete incorporar las mejores prácticas de desarrollo web con un enfoque en la experiencia del usuario.',
+      images: ['/images/projects/proyecto-desarrollo.png'], // Puedes agregar más imágenes aquí
       technologies: ['React', 'Node.js', 'MongoDB', 'TypeScript'],
       liveUrl: '#',
       githubUrl: '#',
@@ -76,13 +81,29 @@ const Projects = () => {
   const handleMouseLeave = () => setIsAutoPlay(true)
 
   const handleCardClick = (projectId) => {
+    if (isTransitioning) return // Prevenir múltiples clics durante la transición
+    
+    setIsTransitioning(true)
     setExpandedCard(expandedCard === projectId ? null : projectId)
     setIsAutoPlay(false) // Pause autoplay when expanding
+    
+    // Resetear transición después de la animación
+    setTimeout(() => {
+      setIsTransitioning(false)
+    }, 500)
   }
 
   const handleImageClose = () => {
+    if (isTransitioning) return
+    
+    setIsTransitioning(true)
     setExpandedCard(null)
-    setIsAutoPlay(true) // Resume autoplay when closing
+    
+    // Resetear transición y reanudar autoplay
+    setTimeout(() => {
+      setIsTransitioning(false)
+      setIsAutoPlay(true)
+    }, 500)
   }
 
   // Touch/Swipe handlers
@@ -125,6 +146,28 @@ const Projects = () => {
     }, 3000)
   }
 
+  // Funciones para el carrusel de imágenes
+  const nextImage = (projectId, totalImages) => {
+    setImageIndex(prev => ({
+      ...prev,
+      [projectId]: ((prev[projectId] || 0) + 1) % totalImages
+    }))
+  }
+
+  const prevImage = (projectId, totalImages) => {
+    setImageIndex(prev => ({
+      ...prev,
+      [projectId]: prev[projectId] > 0 ? prev[projectId] - 1 : totalImages - 1
+    }))
+  }
+
+  const goToImage = (projectId, index) => {
+    setImageIndex(prev => ({
+      ...prev,
+      [projectId]: index
+    }))
+  }
+
   return (
     <section id="projects" className="projects section">
       <div className="container">
@@ -162,76 +205,162 @@ const Projects = () => {
                   <div key={project.id} className="carousel-slide">
                     <div 
                       className={`project-card-carousel ${expandedCard === project.id ? 'expanded' : ''}`}
-                      onClick={() => handleCardClick(project.id)}
                     >
-                      {/* Main Card Content */}
-                      <div className="project-content-main">
-                        <div className="project-header">
-                          <h4 className="project-title">{project.title}</h4>
-                          <div className="expand-indicator">
-                            <svg 
-                              width="24" 
-                              height="24" 
-                              viewBox="0 0 24 24" 
-                              fill="none"
-                              className={expandedCard === project.id ? 'rotated' : ''}
-                            >
-                              <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      {/* Imagen que se muestra cuando está expandida */}
+                      {expandedCard === project.id && (
+                        <div className="project-image-expanded">
+                          <button 
+                            className="close-image-btn"
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              handleImageClose()
+                            }}
+                          >
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                              <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
+                          </button>
+
+                          {/* Carrusel de imágenes */}
+                          <div className="image-carousel">
+                            {project.images.length > 1 && (
+                              <button 
+                                className="image-nav-btn image-nav-prev"
+                                onClick={(e) => {
+                                  e.stopPropagation()
+                                  prevImage(project.id, project.images.length)
+                                }}
+                              >
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                  <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                              </button>
+                            )}
+
+                            <div className="image-placeholder">
+                              <img 
+                                src={project.images[imageIndex[project.id] || 0]} 
+                                alt={`Captura ${(imageIndex[project.id] || 0) + 1} de ${project.title}`}
+                                onError={(e) => {
+                                  // Fallback si la imagen no se encuentra
+                                  e.target.style.display = 'none'
+                                  e.target.nextSibling.style.display = 'flex'
+                                }}
+                              />
+                              <span style={{ display: 'none' }}>
+                                Imagen del proyecto
+                              </span>
+                            </div>
+
+                            {project.images.length > 1 && (
+                              <button 
+                                className="image-nav-btn image-nav-next"
+                                onClick={(e) => {
+                                  e.stopPropagation()
+                                  nextImage(project.id, project.images.length)
+                                }}
+                              >
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                  <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                              </button>
+                            )}
+                          </div>
+
+                          {/* Indicadores de imagen (dots) */}
+                          {project.images.length > 1 && (
+                            <div className="image-dots">
+                              {project.images.map((_, index) => (
+                                <button
+                                  key={index}
+                                  className={`image-dot ${index === (imageIndex[project.id] || 0) ? 'active' : ''}`}
+                                  onClick={(e) => {
+                                    e.stopPropagation()
+                                    goToImage(project.id, index)
+                                  }}
+                                />
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      {/* Contenido principal - información completa cuando no está expandida */}
+                      {expandedCard !== project.id && (
+                        <div className="project-content-main">
+                          <div className="project-header">
+                            <h4 className="project-title">{project.title}</h4>
+                            <div className="expand-indicator">
+                              <svg 
+                                width="24" 
+                                height="24" 
+                                viewBox="0 0 24 24" 
+                                fill="none"
+                              >
+                                <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                              </svg>
+                            </div>
+                          </div>
+                          
+                          <p className="project-description">{project.description}</p>
+                          
+                          <div className="project-technologies">
+                            {project.technologies.map((tech) => (
+                              <span key={tech} className="tech-tag">
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+
+                          <div className="project-links">
+                            <button 
+                              className="btn btn-primary" 
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                handleCardClick(project.id)
+                              }}
+                            >
+                              Toca para ver
+                            </button>
+                            <a 
+                              href={project.githubUrl} 
+                              className="btn" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              Código
+                            </a>
                           </div>
                         </div>
-                        
-                        <p className="project-description">{project.description}</p>
-                        
-                        <div className="project-technologies">
-                          {project.technologies.map((tech) => (
-                            <span key={tech} className="tech-tag">
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
+                      )}
 
-                        <div className="project-links">
-                          <a 
-                            href={project.liveUrl} 
-                            className="btn btn-primary" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            Ver proyecto
-                          </a>
-                          <a 
-                            href={project.githubUrl} 
-                            className="btn" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            Código
-                          </a>
-                        </div>
-                      </div>
-
-                      {/* Expandable Image Section */}
-                      <div className={`project-image-section ${expandedCard === project.id ? 'visible' : ''}`}>
-                        <button 
-                          className="close-image-btn"
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            handleImageClose()
-                          }}
-                        >
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
-                        </button>
-                        <div className="project-image-container">
-                          <div className="image-placeholder">
-                            <span>Imagen del proyecto</span>
+                      {/* Contenido comprimido - solo cuando está expandida */}
+                      {expandedCard === project.id && (
+                        <div className="project-content-compressed">
+                          <h4 className="project-title-compressed">{project.title}</h4>
+                          <div className="project-links-compressed">
+                            <button 
+                              className="btn btn-primary" 
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                handleCardClick(project.id)
+                              }}
+                            >
+                              Ocultar imagen
+                            </button>
+                            <a 
+                              href={project.githubUrl} 
+                              className="btn" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              Código
+                            </a>
                           </div>
                         </div>
-                      </div>
+                      )}
                     </div>
                   </div>
                 ))}
