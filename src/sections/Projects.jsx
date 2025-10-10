@@ -53,7 +53,7 @@ const Projects = () => {
       id: 3,
       title: 'Portfolio Personal',
       description: 'Portfolio personal desarrollado con React y Vite, con diseño minimalista y moderno. Incluye animaciones suaves y diseño completamente responsive.',
-      images: ['/images/projects/portfolio.png'], // Puedes agregar más imágenes aquí
+      images: ['/images/projects/portfolio.png'],
       technologies: ['React', 'Vite', 'CSS3', 'JavaScript'],
       liveUrl: 'https://avsl05.github.io/Portfolio/',
       githubUrl: 'https://github.com/AVSL05/Portfolio',
@@ -61,12 +61,12 @@ const Projects = () => {
     },
     {
       id: 4,
-      title: 'Proyecto en Desarrollo',
-      description: 'Próximo proyecto innovador en desarrollo utilizando tecnologías modernas como React, Node.js y TypeScript. Este proyecto promete incorporar las mejores prácticas de desarrollo web con un enfoque en la experiencia del usuario.',
-      images: ['/images/projects/proyecto-desarrollo.png'], // Puedes agregar más imágenes aquí
-      technologies: ['React', 'Node.js', 'MongoDB', 'TypeScript'],
+      title: 'Aplicación con Flutter para Parejas multiplataforma',
+      description: 'App móvil multiplataforma (iOS/Android) para parejas con chat en tiempo real, notificaciones push y sincronización entre dispositivos. Desarrollada en Flutter con Firebase como backend.',
+      images: ['/images/projects/proyecto-desarrollo.png'],
+      technologies: ['Flutter', 'Firebase', 'Dart'],
       liveUrl: '#',
-      githubUrl: '#',
+      githubUrl: 'https://github.com/AVSL05/App_parejas-IOS-Android',
       featured: false
     }
   ]
@@ -92,6 +92,13 @@ const Projects = () => {
 
   const handleCardClick = (projectId) => {
     if (isTransitioning) return // Prevenir múltiples clics durante la transición
+    
+    // Comportamiento especial para el proyecto Portfolio (id: 3)
+    if (projectId === 3) {
+      // Scroll al inicio de la página
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      return // No expandir la tarjeta
+    }
     
     setIsTransitioning(true)
     setExpandedCard(expandedCard === projectId ? null : projectId)
@@ -271,8 +278,8 @@ const Projects = () => {
                     <div 
                       className={`project-card-carousel ${expandedCard === project.id ? 'expanded' : ''}`}
                     >
-                      {/* Imagen que se muestra cuando está expandida */}
-                      {expandedCard === project.id && (
+                      {/* Imagen que se muestra cuando está expandida - NO para Portfolio (id: 3) */}
+                      {expandedCard === project.id && project.id !== 3 && (
                         <div className="project-image-expanded">
                           <button 
                             className="close-image-btn"
@@ -379,7 +386,7 @@ const Projects = () => {
                                 handleCardClick(project.id)
                               }}
                             >
-                              Toca para ver
+                              {project.id === 3 ? 'Ir al inicio' : 'Toca para ver'}
                             </button>
                             <a 
                               href={project.githubUrl} 
@@ -394,8 +401,8 @@ const Projects = () => {
                         </div>
                       )}
 
-                      {/* Contenido comprimido - solo cuando está expandida */}
-                      {expandedCard === project.id && (
+                      {/* Contenido comprimido - solo cuando está expandida y NO es Portfolio (id: 3) */}
+                      {expandedCard === project.id && project.id !== 3 && (
                         <div className="project-content-compressed">
                           <h4 className="project-title-compressed">{project.title}</h4>
                           <div className="project-links-compressed">
