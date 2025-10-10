@@ -9,6 +9,11 @@ const Projects = () => {
   const [expandedCard, setExpandedCard] = useState(null)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [imageIndex, setImageIndex] = useState({}) // Para manejar el índice de imagen de cada proyecto
+  const [fullscreenImage, setFullscreenImage] = useState(null) // Para el modal de imagen
+  const [fullscreenIndex, setFullscreenIndex] = useState(0) // Índice de imagen en modal
+  const [fullscreenImages, setFullscreenImages] = useState([]) // Array de imágenes para el modal
+  const [modalTouchStart, setModalTouchStart] = useState(null) // Touch para modal
+  const [modalTouchEnd, setModalTouchEnd] = useState(null) // Touch para modal
   const [touchStart, setTouchStart] = useState(null)
   const [touchEnd, setTouchEnd] = useState(null)
 
@@ -31,10 +36,15 @@ const Projects = () => {
     },
     {
       id: 2,
-      title: 'App de Notas Móvil',
-      description: 'Aplicación móvil intuitiva para gestión de notas con interfaz moderna y funcionalidades avanzadas. Diseñada para dispositivos móviles con excelente UX.',
-      images: ['/images/projects/notas-app.png'], // Puedes agregar más imágenes aquí
-      technologies: ['Dart', 'Flutter', 'Python', 'SQLite'],
+      title: 'App de Notas y Calendario Móvil y Macbook IOS',
+      description: 'Aplicación de notas y calendario intuitiva para gestión de notas con interfaz moderna y funcionalidades avanzadas. Diseñada para dispositivos móviles y Macbook .',
+      images: [
+        '/images/projects/App de notas: dalendario 1.png',
+        '/images/projects/App de notas: dalendario 2.png',
+        '/images/projects/App de notas: dalendario 3.png',
+        '/images/projects/App de notas: dalendario 4.png'
+      ],
+      technologies: ['Swift', 'UIKit', 'SQLite'],
       liveUrl: '#',
       githubUrl: 'https://github.com/AVSL05/Notas-App',
       featured: true
@@ -161,12 +171,67 @@ const Projects = () => {
     }))
   }
 
-  const goToImage = (projectId, index) => {
-    setImageIndex(prev => ({
-      ...prev,
-      [projectId]: index
-    }))
+  // Funciones para el modal de imagen completa
+  const openFullscreenImage = (images, currentIndex, projectTitle) => {
+    setFullscreenImages(images)
+    setFullscreenIndex(currentIndex)
+    setFullscreenImage({ title: projectTitle })
+    document.body.style.overflow = 'hidden' // Prevenir scroll del body
   }
+
+  const closeFullscreenImage = () => {
+    setFullscreenImage(null)
+    setFullscreenImages([])
+    setFullscreenIndex(0)
+    document.body.style.overflow = 'auto' // Restaurar scroll del body
+  }
+
+  // Navegación en el modal
+  const nextModalImage = () => {
+    setFullscreenIndex(prev => (prev + 1) % fullscreenImages.length)
+  }
+
+  const prevModalImage = () => {
+    setFullscreenIndex(prev => prev > 0 ? prev - 1 : fullscreenImages.length - 1)
+  }
+
+  // Touch handlers para el modal
+  const onModalTouchStart = (e) => {
+    setModalTouchEnd(null)
+    setModalTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const onModalTouchMove = (e) => {
+    setModalTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const onModalTouchEnd = () => {
+    if (!modalTouchStart || !modalTouchEnd) return
+    
+    const distance = modalTouchStart - modalTouchEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+
+    if (isLeftSwipe) {
+      nextModalImage()
+    }
+    
+    if (isRightSwipe) {
+      prevModalImage()
+    }
+  }
+
+  // Cerrar modal con tecla Escape
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && fullscreenImage) {
+        closeFullscreenImage()
+      }
+    }
+
+    document.addEventListener('keydown', handleEscape)
+    return () => document.removeEventListener('keydown', handleEscape)
+  }, [fullscreenImage])
 
   return (
     <section id="projects" className="projects section">
@@ -241,6 +306,15 @@ const Projects = () => {
                               <img 
                                 src={project.images[imageIndex[project.id] || 0]} 
                                 alt={`Captura ${(imageIndex[project.id] || 0) + 1} de ${project.title}`}
+                                onClick={(e) => {
+                                  e.stopPropagation()
+                                  openFullscreenImage(
+                                    project.images,
+                                    imageIndex[project.id] || 0,
+                                    project.title
+                                  )
+                                }}
+                                style={{ cursor: 'pointer' }}
                                 onError={(e) => {
                                   // Fallback si la imagen no se encuentra
                                   e.target.style.display = 'none'
@@ -267,21 +341,6 @@ const Projects = () => {
                             )}
                           </div>
 
-                          {/* Indicadores de imagen (dots) */}
-                          {project.images.length > 1 && (
-                            <div className="image-dots">
-                              {project.images.map((_, index) => (
-                                <button
-                                  key={index}
-                                  className={`image-dot ${index === (imageIndex[project.id] || 0) ? 'active' : ''}`}
-                                  onClick={(e) => {
-                                    e.stopPropagation()
-                                    goToImage(project.id, index)
-                                  }}
-                                />
-                              ))}
-                            </div>
-                          )}
                         </div>
                       )}
 
@@ -380,6 +439,70 @@ const Projects = () => {
           </div>
         </div>
       </div>
+
+      {/* Modal de imagen en pantalla completa */}
+      {fullscreenImage && (
+        <div className="fullscreen-modal" onClick={closeFullscreenImage}>
+          <div 
+            className="fullscreen-modal-content" 
+            onClick={(e) => e.stopPropagation()}
+            onTouchStart={onModalTouchStart}
+            onTouchMove={onModalTouchMove}
+            onTouchEnd={onModalTouchEnd}
+          >
+            <button className="fullscreen-close-btn" onClick={closeFullscreenImage}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+
+            {/* Navegación solo si hay más de una imagen */}
+            {fullscreenImages.length > 1 && (
+              <>
+                <button className="modal-nav-btn modal-nav-prev" onClick={prevModalImage}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+                
+                <button className="modal-nav-btn modal-nav-next" onClick={nextModalImage}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+              </>
+            )}
+
+            <img 
+              src={fullscreenImages[fullscreenIndex]} 
+              alt={`Imagen ${fullscreenIndex + 1} de ${fullscreenImage.title}`}
+              className="fullscreen-image"
+            />
+            
+            <div className="fullscreen-info">
+              <div className="fullscreen-title">{fullscreenImage.title}</div>
+              {fullscreenImages.length > 1 && (
+                <div className="fullscreen-counter">
+                  {fullscreenIndex + 1} de {fullscreenImages.length}
+                </div>
+              )}
+            </div>
+
+            {/* Dots navigation para el modal */}
+            {fullscreenImages.length > 1 && (
+              <div className="modal-dots">
+                {fullscreenImages.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`modal-dot ${index === fullscreenIndex ? 'active' : ''}`}
+                    onClick={() => setFullscreenIndex(index)}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </section>
   )
 }

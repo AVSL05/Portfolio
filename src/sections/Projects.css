@@ -135,38 +135,6 @@
   right: 15px;
 }
 
-/* Indicadores de imagen */
-.image-dots {
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: var(--spacing-xs);
-  z-index: 15;
-  opacity: 0;
-  animation: fadeInButton 0.5s ease-out 0.5s forwards;
-}
-
-.image-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(255, 255, 255, 0.5);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.image-dot.active {
-  background: var(--accent);
-  transform: scale(1.2);
-}
-
-.image-dot:hover {
-  background: rgba(255, 255, 255, 0.8);
-}
-
 @keyframes slideInImage {
   from {
     opacity: 0;
@@ -415,6 +383,184 @@
   transform: translateY(-2px);
 }
 
+/* Modal de imagen en pantalla completa */
+.fullscreen-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeInModal 0.3s ease-out forwards;
+  cursor: pointer;
+}
+
+@keyframes fadeInModal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fullscreen-modal-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: default;
+}
+
+.fullscreen-close-btn {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1001;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.fullscreen-close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* Botones de navegación del modal */
+.modal-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.modal-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.modal-nav-prev {
+  left: -80px;
+}
+
+.modal-nav-next {
+  right: -80px;
+}
+
+.fullscreen-image {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transform: scale(0.8);
+  animation: zoomInImage 0.4s ease-out 0.1s forwards;
+}
+
+@keyframes zoomInImage {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fullscreen-title {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: var(--spacing-lg);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUpTitle 0.4s ease-out 0.3s forwards;
+}
+
+.fullscreen-info {
+  text-align: center;
+  margin-top: 20px;
+  color: white;
+}
+
+.fullscreen-counter {
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-top: 5px;
+}
+
+/* Dots de navegación del modal */
+.modal-dots {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.modal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modal-dot.active {
+  background: white;
+  transform: scale(1.2);
+}
+
+.modal-dot:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes slideUpTitle {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Expandable Image Section - REMOVED - usando nuevo diseño */
 
 /* Dots Navigation */
@@ -511,15 +657,6 @@
   .image-nav-next {
     right: 10px;
   }
-  
-  .image-dots {
-    bottom: 10px;
-  }
-  
-  .image-dot {
-    width: 8px;
-    height: 8px;
-  }
 }  /* Hacer los puntos más prominentes en móviles */
   .carousel-dots {
     bottom: 15px;
@@ -568,6 +705,52 @@
   }
 }
 
+/* Responsive para modal de imagen */
+@media (max-width: 768px) {
+  .fullscreen-modal-content {
+    max-width: 95vw;
+    max-height: 95vh;
+  }
+  
+  .fullscreen-close-btn {
+    top: -40px;
+    width: 35px;
+    height: 35px;
+  }
+  
+  .modal-nav-btn {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .modal-nav-prev {
+    left: -60px;
+  }
+  
+  .modal-nav-next {
+    right: -60px;
+  }
+  
+  .fullscreen-image {
+    max-height: 75vh;
+  }
+  
+  .fullscreen-title {
+    font-size: 1rem;
+    margin-top: var(--spacing-md);
+  }
+  
+  .modal-dots {
+    gap: 8px;
+    margin-top: 15px;
+  }
+  
+  .modal-dot {
+    width: 10px;
+    height: 10px;
+  }
+}
+
 @media (max-width: 480px) {
   .projects-carousel-container {
     padding: 0; /* Sin padding ya que no hay flechas */
@@ -589,6 +772,31 @@
   
   .project-image-expanded .image-placeholder {
     margin: var(--spacing-sm);
+  }
+  
+  /* Modal navigation responsive para móviles pequeños */
+  .modal-nav-btn {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .modal-nav-prev {
+    left: 10px;
+  }
+  
+  .modal-nav-next {
+    right: 10px;
+  }
+  
+  .fullscreen-close-btn {
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .fullscreen-modal-content {
+    padding: 10px;
   }
   
   .project-content-compressed {
@@ -639,12 +847,19 @@
     right: 8px;
   }
   
-  .image-dots {
-    bottom: 8px;
+  /* Responsive para modal en móviles pequeños */
+  .fullscreen-close-btn {
+    top: -35px;
+    width: 30px;
+    height: 30px;
   }
   
-  .image-dot {
-    width: 6px;
-    height: 6px;
+  .fullscreen-image {
+    max-height: 70vh;
+  }
+  
+  .fullscreen-title {
+    font-size: 0.9rem;
+    margin-top: var(--spacing-sm);
   }
 }
