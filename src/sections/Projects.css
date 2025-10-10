@@ -43,7 +43,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 400px;
+  height: 400px; /* Altura fija en lugar de min-height */
 }
 
 .project-card-carousel:hover {
@@ -78,13 +78,12 @@
 
 /* Imagen expandida que ocupa la parte superior */
 .project-image-expanded {
-  flex: 1;
   position: relative;
   background: var(--secondary-bg);
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 400px; /* Aumentado otros 50px más */
+  height: 300px; /* Altura un poco mayor para mejor balance */
   opacity: 0;
   transform: translateY(-20px);
   animation: slideInImage 0.5s ease-out forwards;
@@ -154,6 +153,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex: 1; /* Usa el espacio restante */
   min-height: 80px;
   opacity: 0;
   transform: translateY(20px);
@@ -286,48 +286,24 @@
 
 /* Main Content Section */
 .project-content-main {
-  padding: var(--spacing-2xl);
+  padding: var(--spacing-xl) var(--spacing-2xl) 120px;
   position: relative;
-}
-
-.project-header {
+  flex: 1;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: var(--spacing-lg);
+  flex-direction: column;
 }
 
 .project-title {
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--text-primary);
-  flex: 1;
-  margin: 0;
-}
-
-.expand-indicator {
-  margin-left: var(--spacing-md);
-  color: var(--text-muted);
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-}
-
-.expand-indicator svg {
-  transition: transform 0.3s ease;
-}
-
-.expand-indicator svg.rotated {
-  transform: rotate(180deg);
-}
-
-.project-card-carousel:hover .expand-indicator {
-  color: var(--accent);
+  margin: 0 0 var(--spacing-sm) 0;
 }
 
 .project-description {
   color: var(--text-secondary);
   line-height: 1.5;
-  margin-bottom: var(--spacing-lg);
+  margin: 0 0 var(--spacing-md) 0;
   font-size: 0.95rem;
   text-align: justify;
   word-wrap: break-word;
@@ -345,7 +321,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: auto;
 }
 
 .tech-tag {
@@ -368,6 +344,11 @@
 .project-links {
   display: flex;
   gap: var(--spacing-md);
+  position: absolute;
+  bottom: 60px; /* Justo arriba de los dots del carrusel */
+  left: var(--spacing-2xl);
+  right: var(--spacing-2xl);
+  padding: var(--spacing-md);
 }
 
 .project-links .btn {
@@ -618,11 +599,11 @@
   }
   
   .project-card-carousel {
-    min-height: 350px;
+    height: 350px; /* Altura fija para tablet */
   }
   
   .project-image-expanded {
-    min-height: 350px; /* Aumentado otros 50px más */
+    height: 250px; /* Altura fija para tablet */
   }
   
   .project-image-expanded .image-placeholder {
@@ -669,18 +650,14 @@
   }
   
   .project-content-main {
-    padding: var(--spacing-lg);
+    padding: var(--spacing-lg) var(--spacing-lg) 100px;
   }
   
-  .project-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .expand-indicator {
-    margin-left: 0;
-    margin-top: var(--spacing-sm);
-    align-self: flex-end;
+  .project-links {
+    left: var(--spacing-lg);
+    right: var(--spacing-lg);
+    bottom: 50px;
+    padding: var(--spacing-sm);
   }
   
   .project-title {
@@ -757,11 +734,11 @@
   }
   
   .project-card-carousel {
-    min-height: 320px;
+    height: 320px; /* Altura fija para móvil */
   }
   
   .project-image-expanded {
-    min-height: 320px; /* Aumentado otros 50px más */
+    height: 220px; /* Altura fija para móvil */
   }
   
   .project-image-expanded .image-placeholder {
@@ -814,6 +791,14 @@
   .project-links-compressed {
     width: 100%;
     justify-content: space-between;
+  }
+  
+  .project-links {
+    left: var(--spacing-sm);
+    right: var(--spacing-sm);
+    bottom: 45px;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
   }
   
   .close-image-btn {

@@ -354,19 +354,7 @@ const Projects = () => {
                       {/* Contenido principal - información completa cuando no está expandida */}
                       {expandedCard !== project.id && (
                         <div className="project-content-main">
-                          <div className="project-header">
-                            <h4 className="project-title">{project.title}</h4>
-                            <div className="expand-indicator">
-                              <svg 
-                                width="24" 
-                                height="24" 
-                                viewBox="0 0 24 24" 
-                                fill="none"
-                              >
-                                <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                              </svg>
-                            </div>
-                          </div>
+                          <h4 className="project-title">{project.title}</h4>
                           
                           <p className="project-description">{project.description}</p>
                           
