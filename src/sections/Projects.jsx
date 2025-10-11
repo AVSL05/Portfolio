@@ -63,7 +63,11 @@ const Projects = () => {
       id: 4,
       title: 'Aplicación con Flutter para Parejas multiplataforma',
       description: 'App móvil multiplataforma (iOS/Android) para parejas con chat en tiempo real, notificaciones push y sincronización entre dispositivos. Desarrollada en Flutter con Firebase como backend.',
-      images: ['/images/projects/proyecto-desarrollo.png'],
+      images: [
+        '/images/projects/app parejas.PNG',
+        '/images/projects/app parejas2.PNG',
+        '/images/projects/app parejas3.PNG'
+      ],
       technologies: ['Flutter', 'Firebase', 'Dart'],
       liveUrl: '#',
       githubUrl: 'https://github.com/AVSL05/App_parejas-IOS-Android',
