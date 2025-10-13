@@ -7,14 +7,14 @@ import typescriptIcon from '../assets/tech/typescript.svg'
 import pythonIcon from '../assets/tech/python.svg'
 import dartIcon from '../assets/tech/dart.svg'
 import kotlinIcon from '../assets/tech/kotlin.svg'
-import swiftIcon from '/images/tech/swift.svg'
+import swiftIcon from '../assets/tech/swift.svg'
 import reactIcon from '../assets/tech/react.svg'
 import nodejsIcon from '../assets/tech/nodedotjs.svg'
 import mongodbIcon from '../assets/tech/mongodb.svg'
 import githubIcon from '../assets/tech/github.svg'
 import androidstudioIcon from '../assets/tech/androidstudio.svg'
-import xcodeIcon from '/images/tech/xcode.svg'
-import vscodeIcon from '/images/tech/VSCode.svg'
+import xcodeIcon from '../assets/tech/xcode.svg'
+import vscodeIcon from '../assets/tech/VSCode.svg'
 
 const About = () => {
   const technologies = [
