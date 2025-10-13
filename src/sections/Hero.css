@@ -41,6 +41,8 @@
   line-height: 1.1;
   margin-bottom: var(--spacing-lg);
   color: var(--text-primary);
+  overflow: visible; /* Asegurar que no se corte */
+  padding: 0.1rem 0; /* Padding mínimo de seguridad */
 }
 
 .gradient-text {
@@ -142,7 +144,12 @@
     text-align: center;
   }
 
-  .hero-title { font-size: 2.5rem; }
+  .hero-title { 
+    font-size: 2.5rem; 
+    line-height: 1.2; /* Aumentado de 1.1 a 1.2 */
+    padding: 0.2rem 0; /* Padding extra para evitar cortes */
+  }
+  
   .hero-subtitle { font-size: 1.25rem; }
 
   .hero-actions {
@@ -151,4 +158,19 @@
   }
 
   .code-snippet { max-width: 100%; }
+}
+
+/* Específico para móviles pequeños (iPhone 12 y similares) */
+@media (max-width: 480px) {
+  .hero-title { 
+    font-size: 2.2rem; 
+    line-height: 1.25; /* Aún más espacioso */
+    padding: 0.3rem 0; /* Más padding para seguridad */
+    margin-bottom: var(--spacing-xl); /* Más espacio inferior */
+  }
+  
+  .hero-subtitle { 
+    font-size: 1.1rem; 
+    margin-bottom: var(--spacing-lg);
+  }
 }
