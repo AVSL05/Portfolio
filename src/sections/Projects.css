@@ -309,7 +309,7 @@
   word-wrap: break-word;
   overflow-wrap: break-word;
   hyphens: auto;
-  max-height: 4.5em; /* Limita a aproximadamente 3 líneas */
+  max-height: 4.5em; /* Limita a aproximadamente 3 líneas en desktop */
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -668,6 +668,9 @@
   .project-description {
     font-size: 0.9rem;
     line-height: 1.4;
+    max-height: 6em; /* Permite 4-5 líneas en tablet */
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
   }
   
   /* Hacer los puntos más prominentes en móviles */
@@ -734,7 +737,7 @@
   }
   
   .project-card-carousel {
-    height: 320px; /* Altura fija para móvil */
+    height: 350px; /* Aumentado de 320px para más espacio de contenido */
   }
   
   .project-image-expanded {
@@ -751,6 +754,16 @@
     margin: var(--spacing-sm);
   }
   
+  /* Descripción más generosa en móviles */
+  .project-description {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    max-height: 7.5em; /* Permite 5-6 líneas en móvil */
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    text-align: left; /* Mejor legibilidad en móvil */
+  }
+
   /* Modal navigation responsive para móviles pequeños */
   .modal-nav-btn {
     width: 40px;
