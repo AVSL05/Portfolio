@@ -308,7 +308,7 @@
   text-align: justify;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  hyphens: auto;
+  hyphens: none; /* Cambiado de auto a none para evitar cortes */
   max-height: 4.5em; /* Limita a aproximadamente 3 líneas en desktop */
   overflow: hidden;
   display: -webkit-box;

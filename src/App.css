@@ -87,11 +87,16 @@ html {
 .section-subtitle {
   font-size: 1.125rem;
   color: var(--text-secondary);
-  text-align: center;
+  text-align: center !important;
   margin-bottom: var(--spacing-2xl);
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  hyphens: none !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  white-space: normal !important;
+  word-wrap: normal !important;
 }
 
 /* Responsive */
@@ -100,8 +105,44 @@ html {
     font-size: 2rem;
   }
   
+  .section-subtitle {
+    font-size: 1rem;
+    max-width: 90%;
+    hyphens: none !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+  }
+  
+  .about-subtitle {
+    hyphens: none !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    text-align: center !important;
+    white-space: normal !important;
+  }
+  
   .grid-2,
   .grid-3 {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-subtitle {
+    font-size: 0.95rem;
+    max-width: 95%;
+    hyphens: none !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    line-height: 1.6;
+  }
+  
+  .about-subtitle {
+    hyphens: none !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    text-align: center !important;
+    white-space: normal !important;
+    line-height: 1.6 !important;
   }
 }

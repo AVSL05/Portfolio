@@ -2,6 +2,19 @@
   background: var(--secondary-bg);
 }
 
+/* Clase específica para evitar corte de palabras en About */
+.about-subtitle {
+  hyphens: none !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  text-align: center !important;
+  white-space: normal !important;
+  word-wrap: normal !important;
+  -webkit-hyphens: none !important;
+  -moz-hyphens: none !important;
+  -ms-hyphens: none !important;
+}
+
 .about-content {
   display: grid;
   grid-template-columns: 350px 1fr;
@@ -25,6 +38,10 @@
   line-height: 1.7;
   color: var(--text-secondary);
   margin-bottom: var(--spacing-lg);
+  hyphens: none !important; /* Evitar corte de palabras */
+  word-break: keep-all !important; /* Mantener palabras completas */
+  overflow-wrap: break-word !important; /* Solo romper en espacios cuando sea necesario */
+  text-align: left !important; /* Asegurar alineación natural */
 }
 
 .about-text p:last-child {
@@ -49,6 +66,8 @@
   color: var(--text-primary);
   margin-bottom: var(--spacing-xl);
   text-align: center;
+  hyphens: none;
+  word-break: keep-all;
 }
 
 .tools-section {
@@ -208,6 +227,9 @@
   color: var(--text-primary);
   font-size: 1rem;
   letter-spacing: 0.25px;
+  hyphens: none;
+  word-break: keep-all;
+  white-space: nowrap; /* Mantener nombres en una sola línea */
 }
 
 .tech-category {
@@ -216,6 +238,11 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 600;
+  hyphens: none;
+  word-break: keep-all;
+  white-space: normal; /* Permitir ajuste de línea */
+  text-align: center;
+  line-height: 1.2;
 }
 
 .tool-name {
@@ -249,9 +276,12 @@
   
   .about-text p {
     font-size: 1rem;
-    text-align: left;
+    text-align: left !important;
     max-width: 90%;
     margin: 0 auto var(--spacing-lg) auto;
+    hyphens: none !important;
+    word-break: keep-all !important;
+    overflow-wrap: break-word !important;
   }
   
   .main-technologies {
@@ -316,6 +346,10 @@
   .about-text p {
     font-size: 0.95rem;
     max-width: 95%;
+    hyphens: none !important;
+    word-break: keep-all !important;
+    overflow-wrap: break-word !important;
+    text-align: left !important;
   }
   
   .main-grid {
@@ -339,7 +373,9 @@
   }
   
   .tech-category {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
+    line-height: 1.1;
+    letter-spacing: 0.5px;
   }
   
   .tech-electric-border {
@@ -349,5 +385,17 @@
   
   .tech-electric-border .eb-content {
     padding: var(--spacing-md);
+  }
+  
+  /* Reglas específicas para about-subtitle en móviles */
+  .about-subtitle {
+    font-size: 0.9rem !important;
+    hyphens: none !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    text-align: center !important;
+    white-space: normal !important;
+    line-height: 1.6 !important;
+    max-width: 95% !important;
   }
 }

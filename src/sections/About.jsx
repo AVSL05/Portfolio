@@ -7,11 +7,14 @@ import typescriptIcon from '../assets/tech/typescript.svg'
 import pythonIcon from '../assets/tech/python.svg'
 import dartIcon from '../assets/tech/dart.svg'
 import kotlinIcon from '../assets/tech/kotlin.svg'
+import swiftIcon from '/images/tech/swift.svg'
 import reactIcon from '../assets/tech/react.svg'
 import nodejsIcon from '../assets/tech/nodedotjs.svg'
 import mongodbIcon from '../assets/tech/mongodb.svg'
 import githubIcon from '../assets/tech/github.svg'
 import androidstudioIcon from '../assets/tech/androidstudio.svg'
+import xcodeIcon from '/images/tech/xcode.svg'
+import vscodeIcon from '/images/tech/VSCode.svg'
 
 const About = () => {
   const technologies = [
@@ -46,6 +49,12 @@ const About = () => {
       category: 'Lenguaje',
       featured: true
     },
+    { 
+      name: 'Swift', 
+      image: swiftIcon,
+      category: 'Lenguaje',
+      featured: true
+    },
     // Frontend y Frameworks
     { 
       name: 'React', 
@@ -64,27 +73,38 @@ const About = () => {
     { 
       name: 'MongoDB', 
       image: mongodbIcon,
-      category: 'Base de Datos',
+      category: 'Database',
       featured: true
     },
     // Herramientas principales
     { 
       name: 'GitHub', 
       image: githubIcon,
-      category: 'Control de Versiones',
+      category: 'Git',
       featured: true
     },
     { 
       name: 'Android Studio', 
       image: androidstudioIcon,
-      category: 'Desarrollo Móvil',
+      category: 'IDE',
+      featured: true
+    },
+    { 
+      name: 'Xcode', 
+      image: xcodeIcon,
+      category: 'IDE',
+      featured: true
+    },
+    { 
+      name: 'VSCode', 
+      image: vscodeIcon,
+      category: 'IDE',
       featured: true
     }
   ]
 
   // Todas las tecnologías están en el stack principal ahora
   const mainTechnologies = technologies.filter(tech => tech.featured)
-  const tools = [] // Sin herramientas separadas
 
   return (
     <section id="about" className="about section">
@@ -92,17 +112,17 @@ const About = () => {
         <h2 className="section-title">
           <SplitText delay={0.2}>Sobre mí</SplitText>
         </h2>
-        <p className="section-subtitle">
-          <SplitText delay={0.3}>Desarrollador Full Stack especializado en JavaScript, Python y desarrollo móvil</SplitText>
+        <p className="section-subtitle about-subtitle">
+          <SplitText delay={0.3}>Desarrollador especializado en JavaScript, Python, Swift y desarrollo móvil</SplitText>
         </p>
         
         <div className="about-content">
           <div className="about-text">
             <p>
               Soy un desarrollador de software apasionado por crear aplicaciones web y móviles modernas. 
-              Me especializo en JavaScript, TypeScript, Python, Dart y Kotlin.
+              Me especializo en JavaScript, TypeScript, Python, Dart, Kotlin y Swift.
               Mi stack principal incluye React para frontend, Node.js para backend y MongoDB como base de datos.
-              Tengo experiencia en desarrollo móvil con Android Studio y Flutter.
+              Tengo experiencia en desarrollo móvil con Android Studio, Flutter y desarrollo iOS con Swift.
             </p>
           </div>
           
