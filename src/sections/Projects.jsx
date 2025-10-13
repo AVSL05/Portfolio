@@ -46,7 +46,7 @@ const Projects = () => {
       ],
       technologies: ['Swift', 'UIKit', 'SQLite'],
       liveUrl: '#',
-      githubUrl: 'https://github.com/AVSL05/Notas-App',
+      githubUrl: 'https://github.com/AVSL05/AppNotas-IOS',
       featured: true
     },
     {
