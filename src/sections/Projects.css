@@ -679,11 +679,10 @@
   }
   
   .carousel-dot {
-    width: 14px;
-    height: 14px;
-    background: rgba(255, 255, 255, 0.7);
-  }
-}
+      width: 14px;
+      height: 14px;
+      background: rgba(255, 255, 255, 0.7);
+    }
 
 /* Responsive para modal de imagen */
 @media (max-width: 768px) {
